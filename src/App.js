@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Welcome from "./components/Welcome";
 import Hello from "./components/Hello";
 import List from "./components/List";
+import LifeCycle from "./components/LifeCycle";
 import Condition from "./components/Condition";
 class App extends Component {
   render() {
@@ -14,6 +15,8 @@ class App extends Component {
         <Hello name="bashir" />
         <List/>
         <Condition/>
+        <hr/>
+        <LifeCycle/>
       </div>
     );
   }
