@@ -5,18 +5,20 @@ import Hello from "./components/Hello";
 import List from "./components/List";
 import LifeCycle from "./components/LifeCycle";
 import Condition from "./components/Condition";
+import Todo from "./components/Todo";
 class App extends Component {
   render() {
     return (
       
       <div className="App">
-        Welcome from App.
+        <Todo/>
+        {/* Welcome from App.
         <Welcome name="bashir" lastName="shallah">Description</Welcome>
         <Hello name="bashir" />
         <List/>
         <Condition/>
         <hr/>
-        <LifeCycle/>
+        <LifeCycle/> */}
       </div>
     );
   }
