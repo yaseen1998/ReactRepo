@@ -6,12 +6,13 @@ import List from "./components/List";
 import LifeCycle from "./components/LifeCycle";
 import Condition from "./components/Condition";
 import Todo from "./components/Todo";
+import Input from "./components/Input";
 class App extends Component {
   render() {
     return (
       
       <div className="App">
-        <Todo/>
+        {/* <Todo/> */}
         {/* Welcome from App.
         <Welcome name="bashir" lastName="shallah">Description</Welcome>
         <Hello name="bashir" />
@@ -19,6 +20,7 @@ class App extends Component {
         <Condition/>
         <hr/>
         <LifeCycle/> */}
+        <Input></Input>
       </div>
     );
   }
