@@ -7,6 +7,7 @@ import LifeCycle from "./components/LifeCycle";
 import Condition from "./components/Condition";
 import Todo from "./components/Todo";
 import Input from "./components/Input";
+import FormInput from "./components/FormInput";
 class App extends Component {
   render() {
     return (
@@ -20,7 +21,9 @@ class App extends Component {
         <Condition/>
         <hr/>
         <LifeCycle/> */}
-        <Input></Input>
+        {/* <Input></Input> */}
+        <FormInput/>
+
       </div>
     );
   }
