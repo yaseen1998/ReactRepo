@@ -26,8 +26,8 @@ class Hello extends Component {
         this.setState({age:this.state.age+1})
         
     }
-    increasebind(){
-        this.setState({age:this.state.age+1})
+    increasebind(item){
+        this.setState({age:item})
     }
     update =(event)=>{
         this.setState({user:{

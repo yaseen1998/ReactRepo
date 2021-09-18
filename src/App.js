@@ -16,9 +16,9 @@ class App extends Component {
       <div className="App">
         {/* <Todo/> */}
         {/* Welcome from App.
-        <Welcome name="bashir" lastName="shallah">Description</Welcome>
-        <Hello name="bashir" />
-        <List/>
+        <Welcome name="bashir" lastName="shallah">Description</Welcome> */}
+        {/* <Hello name="bashir" /> */}
+        {/* <List/>
         <Condition/>
         <hr/>
         <LifeCycle/> */}
