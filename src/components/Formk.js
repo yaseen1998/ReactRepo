@@ -71,6 +71,31 @@ export class Formk extends Component {
         }
         />
 
+        <br />
+        <hr />
+        <FieldArray
+        name = 'phonenumber'
+        render = {arrayHelper=>(
+            <div>
+                {props.values.phonenumber.map((item,index)=>(
+                    <div key = {index}>
+                    <Field name={`phonenumber.${index}.number`} placeholder = 'number'/>
+                    <ErrorMessage name={`phonenumber.${index}.number`} /> <br />
+
+                    <Field name={`phonenumber.${index}.extension`} placeholder = 'extension'/>
+                    <ErrorMessage name={`phonenumber.${index}.extension`} /> <br />
+
+                    <button type='button' onClick={()=>arrayHelper.remove(index)}> remove</button>
+
+              </div>
+                ))}
+             <button type='button' onClick={()=>arrayHelper.push({number:'',extension:''})}> plus</button>
+
+            </div>
+        )
+        }
+        />
+
         <hr />
         <hr />
         <button type="submit">send</button>
@@ -89,6 +114,12 @@ export class Formk extends Component {
       }),
       friend:Yup.array().of(
           Yup.string().required('required')
+      ),
+      phonenumber:Yup.array().of(
+        Yup.object().shape({
+          number:Yup.number().typeError('just number').required(),
+          extension:Yup.number().typeError('just number').required()
+        })
       )
     });
     return schema;
@@ -107,7 +138,19 @@ export class Formk extends Component {
                 facebook:'',
                 twiter:''
             },
-            friend:['ahmad','hassen']
+            friend:['ahmad','hassen'],
+            phonenumber:[
+              {
+                number:'123456',
+                extension:'12',
+                
+              },
+              {
+                number:'123456789',
+                extension:'123',
+
+              }
+            ]
           }}
           onSubmit={this.onSubmit}
           render={this.form}
