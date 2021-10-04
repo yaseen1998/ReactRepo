@@ -11,6 +11,8 @@ import FormInput from "./components/FormInput";
 import Formk from "./components/Formk";
 import Formexam from "./components/Formexam"
 import Exam301 from "./components/Exam301";
+import FruitData from "./components/fruit/FruitData";
+import FruitFav from "./components/fruit/FruitFav";
 
 import { withAuth0 } from "@auth0/auth0-react";
 import {
@@ -21,7 +23,7 @@ import {
 } from "react-router-dom";
 
 class App extends Component {
-  
+
   render() {
     const { isAuthenticated } = this.props.auth0
     console.log(isAuthenticated);
@@ -29,12 +31,27 @@ class App extends Component {
     return (
 
       <div className="App">
-         <Router>
-     
+
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              
+              <FruitData />
+            </Route>
+            <Route exact path="/fruitfav">
+              <FruitFav />
+            </Route>
+          </Switch>
+        </Router>
+
+
+
+        {/* <Router> */}
+
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
+        {/* <Switch>
           <Route exact path="/">
             <Exam301 />
           </Route>
@@ -42,8 +59,8 @@ class App extends Component {
             <Formexam />
           </Route>
         </Switch>
-      </Router>
-    
+      </Router> */}
+
         {/* <Todo/> */}
         {/* Welcome from App.
         <Welcome name="bashir" lastName="shallah">Description</Welcome> */}
