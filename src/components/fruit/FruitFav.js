@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form ,Button,Row,Col,Card} from 'react-bootstrap'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import { withAuth0 } from "@auth0/auth0-react";
 
 export class FruitFav extends Component {
     constructor(props){
@@ -15,10 +16,10 @@ export class FruitFav extends Component {
         }
     }
     componentDidMount=async()=>{
-        const Fruitdata = await axios.get('http://localhost:8000/get-fruit')
-        console.log(Fruitdata.data.data);
+        const Fruitdata = await axios.get(`http://localhost:8000/get-fruituser/${this.props.auth0.user.email}`)
+        console.log(Fruitdata.data.data.fav);
         this.setState({
-            fruit:Fruitdata.data.data
+            fruit:Fruitdata.data.data.fav
         })
     }
     handlelocation=(e)=>{
@@ -33,15 +34,16 @@ export class FruitFav extends Component {
             image:this.state.image,
             price:this.state.price
         }
-        const update = await axios.patch(`http://localhost:8000/update-fruit/${this.state.id}`,list)
+        const update = await axios.patch(`http://localhost:8000/update-fruituser/${this.props.auth0.user.email}/${this.state.id}`,list)
         this.setState({
-            fruit:update.data.data
+            fruit:update.data.data.fav
         })
     }
     removefav = async(id)=>{
-        const remove = await axios.delete(`http://localhost:8000/delete-fruit/${id}`)
+        const remove = await axios.patch(`http://localhost:8000/delete-fruituser/${this.props.auth0.user.email}/${id}`)
+        console.log(remove.data.data);
         this.setState({
-            fruit:remove.data.data
+            fruit:remove.data.data.fav
         })
     }
     updatefav = async(id,name,image,price)=>{
@@ -107,4 +109,4 @@ export class FruitFav extends Component {
     }
 }
 
-export default FruitFav
+export default withAuth0(FruitFav)

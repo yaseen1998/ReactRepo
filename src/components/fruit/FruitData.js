@@ -4,6 +4,7 @@ import { Card ,Button,Row,Col} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import LoginButton from '../LoginButton'
 import LogoutButton from '../LogoutButton'
+import { withAuth0 } from "@auth0/auth0-react";
 
 export class FruitData extends Component {
     constructor(props){
@@ -23,22 +24,25 @@ this.setState({
 
 
     createfav=async(name,image,price)=>{
+      console.log(this.props.auth0.user.email);
      const list={
             name:name,
             image:image,
             price:price
         }
-        const fav = await axios.post('http://localhost:8000/create-fruit',list)
+        const fav = await axios.post(`http://localhost:8000/create-userfrui/${this.props.auth0.user.email}`,list)
         console.log(fav.data);
     }
     render() {
         return (
             <div>
-                 <Link  to="/fruitfav">fruitfav</Link>
+            
+              <Button variant="primary" ><Link  to="/fruitfav">fruitfav</Link></Button>
+              <LogoutButton/>
 
                  <LoginButton/>
 
-                <LogoutButton/>
+                
                 
                 <Row xs={1} md={3} className="g-4">
   {this.state.fruit.map((item,index) => (
@@ -50,8 +54,8 @@ this.setState({
           <Card.Text>
           {item.price}
           <br/>
-         
-          <Button variant="danger" onClick={()=>{this.createfav(item.name,item.image,item.price)}}>add fav</Button>
+         {this.props.auth0.isAuthenticated&&
+          <Button variant="danger" onClick={()=>{this.createfav(item.name,item.image,item.price)}}>add fav</Button>}
           </Card.Text>
         </Card.Body>
       </Card>
@@ -63,4 +67,4 @@ this.setState({
     }
 }
 
-export default FruitData
+export default withAuth0(FruitData)
